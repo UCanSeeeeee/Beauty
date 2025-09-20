@@ -1,0 +1,52 @@
+//
+//  Header.h
+//  Beauty
+//
+//  Created by Chieh on 2025/5/25.
+//
+
+#ifndef Header_h
+#define Header_h
+
+#import "YYCategories.h"
+#import <libextobjc/extobjc.h>
+#import <AFNetworking/AFNetworking.h>
+#import "InfoPanelView.h"
+#import "CenterToastView.h"
+#import "GlobalToolHandler.h"
+#import "GlobalToolHandler+Promise.h"
+
+#ifndef kScreenRatio
+#define kScreenRatio kScreenWidth / 375.0
+#endif
+
+// 字体大小适配宏
+#define FontSize(size) ((size) * kScreenRatio)
+
+// 行间距适配宏
+#define LineSpacing(spacing) ((spacing) * kScreenRatio)
+// 顶部安全区域高度（包含刘海或灵动岛）
+#define SafeAreaTopHeight ({\
+    CGFloat topInset = 0;\
+    if (@available(iOS 11.0, *)) {\
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];\
+        topInset = window.safeAreaInsets.top;\
+    } else {\
+        topInset = 20.0;\
+    }\
+    topInset;\
+})
+
+// 底部安全区域高度（底部虚拟Home条高度）
+#define SafeAreaBottomHeight ({\
+    CGFloat bottomInset = 0;\
+    if (@available(iOS 11.0, *)) {\
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];\
+        bottomInset = window.safeAreaInsets.bottom;\
+    } else {\
+        bottomInset = 0;\
+    }\
+    bottomInset;\
+})
+
+#endif /* Header_h */
