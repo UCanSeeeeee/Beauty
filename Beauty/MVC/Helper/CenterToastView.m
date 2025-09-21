@@ -49,10 +49,12 @@
 }
 
 /// 显示toast
-+ (instancetype)showWithText:(NSString *)text {
++ (void)showWithText:(NSString *)text {
+    return;
+    
     static CenterToastView *_currentToast = nil;
     UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-    if (!keyWindow) return nil;
+    if (!keyWindow) return ;
     
     // 如果已有toast，先隐藏
     if (_currentToast) {
@@ -69,8 +71,6 @@
 
     // 1.5秒后自动隐藏
     [toast performSelector:@selector(dismiss) withObject:nil afterDelay:1.5];
-
-    return toast;
 }
 
 - (UILabel *)label {

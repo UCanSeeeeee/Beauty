@@ -23,7 +23,25 @@
     }
     UIViewController *rootVC = keyWindow.rootViewController;
     UINavigationController *nav = (UINavigationController *)rootVC;
+    
+    // 跳转到结论页面
     [nav pushViewController:vc animated:YES];
+    
+    // 从导航栈中移除 TakePhotosViewController
+    NSMutableArray *viewControllers = [nav.viewControllers mutableCopy];
+    NSMutableArray *controllersToRemove = [NSMutableArray array];
+    
+    for (UIViewController *controller in viewControllers) {
+        if ([controller isKindOfClass:NSClassFromString(@"TakePhotosViewController")]) {
+            [controllersToRemove addObject:controller];
+        }
+    }
+    
+    if (controllersToRemove.count > 0) {
+        [viewControllers removeObjectsInArray:controllersToRemove];
+        [nav setViewControllers:viewControllers animated:NO];
+        NSLog(@"✅ 已从导航栈中移除 %lu 个 TakePhotosViewController", (unsigned long)controllersToRemove.count);
+    }
 }
 
 + (void)pushResultDetailVC {

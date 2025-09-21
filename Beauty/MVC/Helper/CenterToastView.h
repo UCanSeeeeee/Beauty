@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CenterToastView : UIView
 
 /// 快速显示文本提示，自动添加到keyWindow
-+ (instancetype)showWithText:(NSString *)text;
++ (void)showWithText:(NSString *)text;
 
 /// 手动隐藏toast
 - (void)dismiss;
