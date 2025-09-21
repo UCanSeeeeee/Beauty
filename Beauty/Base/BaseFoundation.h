@@ -16,6 +16,11 @@
 #import "GlobalToolHandler.h"
 #import "GlobalToolHandler+Promise.h"
 
+// 👍
+static NSString * const kAppStoreURL = @"itms-apps://itunes.apple.com/app/id123456789";
+static NSString * const kRedBookURL = @"xhsdiscover://user/6864ab0c000000001e00647e";
+static NSString * const kFeedbackEmail = @"1137463769@qq.com";
+
 #ifndef kScreenRatio
 #define kScreenRatio kScreenWidth / 375.0
 #endif

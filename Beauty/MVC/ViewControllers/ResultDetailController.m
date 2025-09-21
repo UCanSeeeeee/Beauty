@@ -9,6 +9,8 @@
 #import "BaseFoundation.h"
 #import "PanelDSummary.h"
 #import <YYCategories/YYCategories.h>
+#import "GlobalToolHandler.h"
+#import <objc/runtime.h>
 
 // MARK: - Constants
 static const CGFloat kBackButtonSize = 40.0;       // 返回按钮尺寸
@@ -170,6 +172,7 @@ typedef NS_ENUM(NSInteger, ResultSection) {
 
 - (void)setupMakeupPopupImageView {
     // 检查用户是否已经看过弹窗
+    // 👍
 //    if ([self hasMakeupPopupBeenShown]) {
 //        return;
 //    }
@@ -177,19 +180,13 @@ typedef NS_ENUM(NSInteger, ResultSection) {
     CGFloat popupHeight = kPopupImageViewHeight * kScreenRatio;
     self.makeupPopupImageView = [[UIImageView alloc] init];
     self.makeupPopupImageView.frame = CGRectMake(0, self.view.height, kScreenWidth, popupHeight);
-    self.makeupPopupImageView.backgroundColor = [UIColor colorWithHexString:@"#000000"];
+    self.makeupPopupImageView.image = [UIImage imageNamed:@"team_image"];
     self.makeupPopupImageView.userInteractionEnabled = YES;
     self.makeupPopupImageView.hidden = YES;
     
     // 设置圆角（仅顶部）
     self.makeupPopupImageView.layer.cornerRadius = 20.0;
     self.makeupPopupImageView.layer.maskedCorners = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
-    
-    // 添加阴影效果
-    self.makeupPopupImageView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.makeupPopupImageView.layer.shadowOffset = CGSizeMake(0, -2);
-    self.makeupPopupImageView.layer.shadowOpacity = 0.1;
-    self.makeupPopupImageView.layer.shadowRadius = 8.0;
     
     // 添加点击手势
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopupImageView)];
@@ -424,7 +421,7 @@ typedef NS_ENUM(NSInteger, ResultSection) {
 }
 
 - (void)hidePopupImageView {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"xhsdiscover://user/63280d7800000000230254b8"] options:@{} completionHandler:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kRedBookURL] options:@{} completionHandler:nil];
     if (!self.isPopupShown || !self.makeupPopupImageView) {
         return;
     }

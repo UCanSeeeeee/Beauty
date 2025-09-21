@@ -20,11 +20,6 @@ static const CGFloat kBottomSpacing = 56.0;               // 底部间距
 static const CGFloat kTableViewHeight = 420.0;            // 表格视图高度
 static const CGFloat kCellHeight = 55.0;                  // 单元格高度
 
-// MARK: - External URLs
-static NSString * const kAppStoreURL = @"itms-apps://itunes.apple.com/app/id123456789";
-static NSString * const kRedBookURL = @"xhsdiscover://user/63280d7800000000230254b8";
-static NSString * const kFeedbackEmail = @"chieh504@qq.com";
-
 @interface SettingPopupView () <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
 // MARK: - UI Components

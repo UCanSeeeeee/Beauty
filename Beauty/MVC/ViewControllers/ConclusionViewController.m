@@ -245,7 +245,7 @@
 - (UIButton *)saveShareButton {
     if (!_saveShareButton) {
         _saveShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _saveShareButton.frame = CGRectMake(19, 0, 164.5, 58);
+        _saveShareButton.frame = CGRectMake(20, 0, (kScreenWidth - 2 * 20 - 8) / 2.0, 58);
         _saveShareButton.bottom = self.contentContainer.height - SafeAreaBottomHeight;
         _saveShareButton.backgroundColor = [UIColor whiteColor];
         _saveShareButton.layer.cornerRadius = 24;
@@ -254,14 +254,6 @@
         [_saveShareButton setTitle:@"分享" forState:UIControlStateNormal];
         [_saveShareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _saveShareButton.titleLabel.font = [UIFont systemFontOfSize:FontSize(14) weight:UIFontWeightMedium];
-
-        // 添加右侧图标（虚线圈图）
-        UIImage *icon = [UIImage imageNamed:@"CH_share_icon"];
-        [_saveShareButton setImage:icon forState:UIControlStateNormal];
-
-        // 调整文字和图标间距（左文字右图）
-        _saveShareButton.imageEdgeInsets = UIEdgeInsetsMake(0, 107, 0, 0);
-        _saveShareButton.titleEdgeInsets = UIEdgeInsetsMake(0, -18, 0, 18);
         [_saveShareButton addTarget:self action:@selector(saveInPhoteoLibrary) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveShareButton;
@@ -482,9 +474,9 @@
     CGFloat leftAreaY = frame.origin.y;
     
     // 1. 绘制左侧图标（使用App图标或自定义图标）
-    UIImage *appIcon = [UIImage imageNamed:@"home_top_center_image"];
+    UIImage *appIcon = [UIImage imageNamed:@"poster_team_icon"];
     CGFloat iconX = leftAreaX;
-    CGFloat iconY = leftAreaY + 0; // 进一步上移至3pt，最大化减少空白
+    CGFloat iconY = leftAreaY + 10; // 进一步上移至3pt，最大化减少空白
     [appIcon drawInRect:CGRectMake(iconX, iconY, 20 * appIcon.size.width / appIcon.size.height , 20)];
     
     // 2. 绘制文案
@@ -693,9 +685,8 @@
 
 - (UIButton *)fullReportButton {
     if (!_fullReportButton) {
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         _fullReportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _fullReportButton.frame = CGRectMake(screenWidth - 20 - 164.5, 0, 164.5, 58);
+        _fullReportButton.frame = CGRectMake(kScreenWidth / 2.0 + 4, 0, (kScreenWidth - 2 * 20 - 8) / 2.0, 58);
         _fullReportButton.bottom = self.contentContainer.height - SafeAreaBottomHeight;
         _fullReportButton.backgroundColor = [UIColor blackColor];
         _fullReportButton.layer.cornerRadius = 24;
